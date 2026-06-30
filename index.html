@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>행정구역 개편 안내</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #f4f7f5;
+    color: #222;
+  }
+  .header {
+    background: #2e7d52;
+    color: #fff;
+    padding: 28px 20px 24px;
+    text-align: center;
+  }
+  .header h1 {
+    margin: 0 0 6px;
+    font-size: 24px;
+    line-height: 1.4;
+  }
+  .header p {
+    margin: 0;
+    font-size: 15px;
+    opacity: 0.95;
+  }
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 20px 18px 40px;
+  }
+  .audio-box {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .audio-box p {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2e7d52;
+  }
+  audio {
+    width: 100%;
+    height: 48px;
+  }
+  .play-btn {
+    display: inline-block;
+    margin-top: 10px;
+    background: #2e7d52;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 28px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .play-btn:active { background: #245f40; }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .card.highlight {
+    border: 2px solid #2e7d52;
+  }
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #2e7d52;
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .num-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    background: #2e7d52;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .card p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+  }
+  .intro {
+    background: #fff8e1;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: #5d4a00;
+  }
+  .footer-note {
+    background: #e8f3ed;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 24px;
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: #2e5c40;
+    text-align: center;
+  }
+  .footer-note strong {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .reading {
+    background: #fffbe6 !important;
+    transition: background 0.3s;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>행정 체제 개편 안내</h1>
+  <p>어르신들께서 안심하고 일하실 수 있도록 안내드립니다</p>
+</div>
+
+<div class="container">
+
+  <div class="audio-box">
+    <p>🔊 음성으로 듣기</p>
+    <button class="play-btn" id="playBtn" onclick="toggleSpeech()">▶ 음성 안내 듣기</button>
+    <div id="speechStatus" style="margin-top:10px; font-size:14px; color:#777;"></div>
+  </div>
+
+  <div class="intro" id="seg-intro">
+    최근 인천 중구의 행정 체제 개편으로 걱정하시는 어르신들이 많으십니다.
+    어르신들께서 안심하고 즐겁게 일하실 수 있도록 걱정 마시고 평소처럼 건강하게 참여해 주세요!
+  </div>
+
+  <div class="card" id="seg-1">
+    <p class="section-title"><span class="num-badge">1</span>지금 하시는 일과 근무 장소는 똑같습니다</p>
+    <p>행정구역 명칭만 바뀔 뿐, 어르신이 오늘 가시는 근무지, 같이 일하는 동료, 하시는 역할은 단 하나도 바뀌지 않고 그대로 유지됩니다.</p>
+  </div>
+
+  <div class="card" id="seg-2">
+    <p class="section-title"><span class="num-badge">2</span>활동비(급여)는 정해진 날짜에 정확히 지급됩니다</p>
+    <p>구청 이름이 바뀌어도 어르신들의 소중한 활동비는 기존에 받으시던 통장으로 기존 날짜에 한 치의 오차도 없이 입금됩니다. 통장을 새로 바꾸실 필요가 전혀 없습니다.</p>
+  </div>
+
+  <div class="card" id="seg-3">
+    <p class="section-title"><span class="num-badge">3</span>센터 선생님들도 그대로 함께합니다</p>
+    <p>어르신들을 늘 살뜰하게 챙겨드리던 센터의 담당 선생님들이 앞으로도 변함없이 어르신들의 안전과 활동을 지원해 드립니다.</p>
+  </div>
+
+  <div class="card" id="seg-4">
+    <p class="section-title"><span class="num-badge">4</span>새로운 조끼와 명찰을 순차적으로 드립니다</p>
+    <p>행정 개편에 따라 기관 명칭이 새롭게 바뀌면, 어르신들께 새로운 조끼와 명찰을 차례대로 나누어 드릴 예정입니다. 새 옷을 받으시기 전까지는 지금 가지고 계신 물품을 그대로 편하게 사용하시면 됩니다.</p>
+  </div>
+
+  <div class="card" id="seg-5">
+    <p class="section-title"><span class="num-badge">5</span>올해 사업과 내년도 신청 안내</p>
+    <p>올해 사업은 계약하신 기간까지 안전하게 마무리되며, 내년도 일자리 신청 역시 새로운 구의 노인인력개발센터에서 동일하게 지원하실 수 있도록 미리 상세하게 안내해 드리겠습니다.</p>
+  </div>
+
+  <div class="footer-note" id="seg-outro">
+    <strong>날씨가 변하는 시기인 만큼, 첫째도 안전, 둘째도 건강입니다</strong>
+    조금이라도 몸이 불편하시거나 어지러우실 때는 무리하지 마시고<br>
+    즉시 센터 선생님이나 조장님께 말씀해 주십시오.
+  </div>
+
+</div>
+
+<script>
+  const segments = [
+    { id: 'seg-intro', text: '최근 인천 중구의 행정 체제 개편으로 걱정하시는 어르신들이 많으십니다. 어르신들께서 안심하고 즐겁게 일하실 수 있도록 걱정 마시고 평소처럼 건강하게 참여해 주세요.' },
+    { id: 'seg-1', text: '첫째, 지금 하시는 일과 근무 장소는 똑같습니다. 행정구역 명칭만 바뀔 뿐, 어르신이 오늘 가시는 근무지, 같이 일하는 동료, 하시는 역할은 단 하나도 바뀌지 않고 그대로 유지됩니다.' },
+    { id: 'seg-2', text: '둘째, 활동비, 급여는 정해진 날짜에 정확히 지급됩니다. 구청 이름이 바뀌어도 어르신들의 소중한 활동비는 기존에 받으시던 통장으로 기존 날짜에 한 치의 오차도 없이 입금됩니다. 통장을 새로 바꾸실 필요가 전혀 없습니다.' },
+    { id: 'seg-3', text: '셋째, 센터 선생님들도 그대로 함께합니다. 어르신들을 늘 살뜰하게 챙겨드리던 센터의 담당 선생님들이 앞으로도 변함없이 어르신들의 안전과 활동을 지원해 드립니다.' },
+    { id: 'seg-4', text: '넷째, 행정 개편에 따라 기관 명칭이 새롭게 바뀌면, 어르신들께 새로운 조끼와 명찰을 차례대로 나누어 드릴 예정입니다. 새 옷을 받으시기 전까지는 지금 가지고 계신 물품을 그대로 편하게 사용하시면 됩니다.' },
+    { id: 'seg-5', text: '다섯째, 올해 사업은 계약하신 기간까지 안전하게 마무리되며, 내년도 일자리 신청 역시 새로운 구의 노인인력개발센터에서 동일하게 지원하실 수 있도록 미리 상세하게 안내해 드리겠습니다.' },
+    { id: 'seg-outro', text: '날씨가 변하는 시기인 만큼, 첫째도 안전, 둘째도 건강입니다. 조금이라도 몸이 불편하시거나 어지러우실 때는 무리하지 마시고 즉시 센터 선생님이나 조장님께 말씀해 주십시오.' }
+  ];
+
+  const btn = document.getElementById('playBtn');
+  const statusEl = document.getElementById('speechStatus');
+  let speaking = false;
+  let paused = false;
+  let currentIndex = 0;
+  let koreanVoice = null;
+
+  function pickKoreanVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    koreanVoice = voices.find(v => v.lang === 'ko-KR') || voices.find(v => v.lang && v.lang.startsWith('ko'));
+  }
+
+  if ('speechSynthesis' in window) {
+    pickKoreanVoice();
+    window.speechSynthesis.onvoiceschanged = pickKoreanVoice;
+  }
+
+  function clearHighlight() {
+    segments.forEach(s => {
+      document.getElementById(s.id).classList.remove('reading');
+    });
+  }
+
+  function speakSegment(index) {
+    if (index >= segments.length) {
+      speaking = false;
+      btn.textContent = '▶ 다시 듣기';
+      statusEl.textContent = '';
+      clearHighlight();
+      currentIndex = 0;
+      return;
+    }
+    const seg = segments[index];
+    clearHighlight();
+    const el = document.getElementById(seg.id);
+    el.classList.add('reading');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    const utter = new SpeechSynthesisUtterance(seg.text);
+    utter.lang = 'ko-KR';
+    if (koreanVoice) utter.voice = koreanVoice;
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+
+    utter.onend = () => {
+      if (!paused) {
+        currentIndex = index + 1;
+        speakSegment(currentIndex);
+      }
+    };
+
+    window.speechSynthesis.speak(utter);
+  }
+
+  function toggleSpeech() {
+    if (!('speechSynthesis' in window)) {
+      alert('이 브라우저에서는 음성 안내를 지원하지 않습니다. 텍스트로 확인해 주세요.');
+      return;
+    }
+
+    if (speaking && !paused) {
+      // 일시정지
+      window.speechSynthesis.pause();
+      paused = true;
+      speaking = true;
+      btn.textContent = '▶ 이어 듣기';
+      statusEl.textContent = '일시정지됨';
+      return;
+    }
+
+    if (paused) {
+      // 재개
+      window.speechSynthesis.resume();
+      paused = false;
+      btn.textContent = '❚❚ 일시정지';
+      statusEl.textContent = '읽는 중...';
+      return;
+    }
+
+    // 처음부터 재생
+    window.speechSynthesis.cancel();
+    currentIndex = 0;
+    speaking = true;
+    paused = false;
+    btn.textContent = '❚❚ 일시정지';
+    statusEl.textContent = '읽는 중...';
+    speakSegment(0);
+  }
+</script>
+
+</body>
+</html>
